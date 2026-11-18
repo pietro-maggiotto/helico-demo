@@ -146,14 +146,14 @@ const courses = [
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#fbfaf6] text-[#183b32]">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
+    <main className="liquid-page relative isolate overflow-clip text-[#183b32]">
+      <header className="glass-panel mx-auto mt-4 flex w-[calc(100%-1.5rem)] max-w-7xl items-center justify-between rounded-full px-4 py-3 sm:w-[calc(100%-4rem)] sm:px-7">
         <a
           href="#inizio"
           className="flex items-center gap-2 text-2xl font-black tracking-[-0.07em]"
           aria-label="Helico, torna all'inizio"
         >
-          <span className="flex size-8 items-center justify-center rounded-xl bg-[#c4ed69] text-lg font-black">
+          <span className="glass-control flex size-8 items-center justify-center rounded-full text-lg font-black">
             h
           </span>
           helico
@@ -173,7 +173,7 @@ export default function Home() {
           </a>
         </nav>
         <a
-          className="rounded-full border border-[#183b32]/15 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-[#183b32] hover:text-white"
+          className="glass-control rounded-full px-4 py-2.5 text-sm font-semibold text-[#183b32] hover:-translate-y-0.5 hover:bg-white/90"
           href="#lista-attesa"
         >
           Inizia da qui <span aria-hidden="true">↗</span>
@@ -185,11 +185,11 @@ export default function Home() {
         className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-12 lg:pb-32"
       >
         <div className="relative z-10">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#edf4df] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#466435]">
+          <p className="glass-control mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#36553c]">
             <span className="size-2 rounded-full bg-[#79a84b]" />
             Una nuova strada, concreta
           </p>
-          <h1 className="max-w-3xl text-[clamp(2.8rem,8vw,5.75rem)] font-semibold leading-[0.99] tracking-[-0.065em]">
+          <h1 className="max-w-3xl text-[clamp(2.6rem,4.6vw,4.25rem)] font-semibold leading-[0.99] tracking-[-0.065em]">
             Diventa elettricista o idraulico in{" "}
             <span className="relative inline-block whitespace-nowrap">
               6 mesi
@@ -208,7 +208,7 @@ export default function Home() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href="#lista-attesa"
-              className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#183b32] px-7 text-base font-semibold text-white shadow-[0_8px_24px_rgba(24,59,50,0.16)] transition-transform hover:-translate-y-0.5 hover:bg-[#285447]"
+              className="glass-cta inline-flex min-h-14 items-center justify-center gap-3 rounded-full px-7 text-base font-semibold text-white transition-transform hover:-translate-y-0.5 hover:brightness-110"
             >
               Entra in lista d&apos;attesa <span aria-hidden="true">↗</span>
             </a>
@@ -218,13 +218,13 @@ export default function Home() {
           </div>
           <div className="mt-10 flex items-center gap-3 text-sm text-[#53665c]">
             <div className="flex -space-x-2" aria-hidden="true">
-              <span className="flex size-8 items-center justify-center rounded-full border-2 border-[#fbfaf6] bg-[#edc8a9] text-xs">
+              <span className="glass-float flex size-8 items-center justify-center rounded-full border-2 border-[#f5f8f5] text-xs">
                 ✦
               </span>
-              <span className="flex size-8 items-center justify-center rounded-full border-2 border-[#fbfaf6] bg-[#d2e1b5] text-xs">
+              <span className="glass-float flex size-8 items-center justify-center rounded-full border-2 border-[#f5f8f5] text-xs">
                 +
               </span>
-              <span className="flex size-8 items-center justify-center rounded-full border-2 border-[#fbfaf6] bg-[#e6d9ba] text-xs">
+              <span className="glass-float flex size-8 items-center justify-center rounded-full border-2 border-[#f5f8f5] text-xs">
                 ✓
               </span>
             </div>
@@ -237,20 +237,20 @@ export default function Home() {
             aria-hidden="true"
             className="absolute -right-4 top-4 size-64 rounded-full bg-[#dbe9c4] blur-3xl sm:-right-8 sm:top-0 sm:size-80"
           />
-          <div className="relative rounded-[2rem] bg-[#eaf0e1] p-4 sm:rounded-[2.5rem] sm:p-6">
-            <div className="absolute -left-2 top-10 flex items-center gap-2 rounded-full bg-white px-4 py-3 text-xs font-semibold shadow-lg sm:-left-10 sm:text-sm">
+          <div className="glass-panel relative rounded-[2rem] p-4 sm:rounded-[2.5rem] sm:p-6">
+            <div className="glass-float absolute -left-2 -top-3 z-20 flex items-center gap-2 rounded-full px-4 py-3 text-xs font-semibold sm:-left-10 sm:text-sm">
               <span className="flex size-7 items-center justify-center rounded-full bg-[#e3f3c7] text-[#527334]">
                 ✓
               </span>
               Impara facendo
             </div>
-            <div className="absolute -right-2 bottom-16 flex items-center gap-2 rounded-full bg-white px-4 py-3 text-xs font-semibold shadow-lg sm:-right-8 sm:text-sm">
+            <div className="glass-float absolute -right-2 bottom-0 z-20 flex items-center gap-2 rounded-full px-4 py-3 text-xs font-semibold sm:-right-8 sm:text-sm">
               <span className="flex size-7 items-center justify-center rounded-full bg-[#183b32] text-white">
                 ✦
               </span>
               Feedback personalizzato
             </div>
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-[#d8e6ca] p-5 sm:rounded-[2rem] sm:p-7">
+            <div className="glass-tinted relative overflow-hidden rounded-[1.5rem] p-5 sm:rounded-[2rem] sm:p-7">
               <div className="flex items-center justify-between">
                 <span className="rounded-full bg-white/70 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#50644e]">
                   La tua palestra, a casa
@@ -259,7 +259,7 @@ export default function Home() {
                   ✦
                 </span>
               </div>
-              <div className="relative my-7 flex aspect-[1.1] items-center justify-center overflow-hidden rounded-[1.25rem] bg-[#b7cba4] sm:my-8 sm:aspect-[1.18]">
+              <div className="glass-tinted relative my-7 flex aspect-[1.1] items-center justify-center overflow-hidden rounded-[1.25rem] sm:my-8 sm:aspect-[1.18]">
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 opacity-30"
@@ -269,21 +269,28 @@ export default function Home() {
                     backgroundSize: "30px 30px",
                   }}
                 />
-                <div className="relative flex h-[68%] w-[72%] items-center justify-center rounded-2xl border-2 border-dashed border-[#718965] bg-[#dfe8d4]/70">
+                <div className="glass-inset relative flex h-[68%] w-[72%] items-center justify-center rounded-2xl border-2 border-dashed border-[#718965]">
                   <div className="absolute left-[18%] top-0 h-full w-1.5 rounded-full bg-[#435f4a]" />
                   <div className="absolute right-[18%] top-0 h-full w-1.5 rounded-full bg-[#435f4a]" />
                   <div className="absolute left-0 top-[23%] h-1.5 w-full bg-[#435f4a]" />
                   <div className="absolute left-0 top-[50%] h-1.5 w-full bg-[#435f4a]" />
                   <div className="absolute left-0 top-[77%] h-1.5 w-full bg-[#435f4a]" />
-                  <div className="relative flex size-16 items-center justify-center rounded-2xl bg-[#183b32] text-3xl text-[#c4ed69] shadow-xl sm:size-20 sm:text-4xl">
-                    ⚡
+                  <div className="relative flex size-16 items-center justify-center rounded-2xl bg-[#183b32] text-[#c4ed69] shadow-xl sm:size-20">
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 48 48"
+                      fill="currentColor"
+                      className="size-9 sm:size-11"
+                    >
+                      <path d="M27 5 12 26h11l-2 17 15-23H25l2-15Z" />
+                    </svg>
                   </div>
                   <span className="absolute -bottom-4 right-3 rounded-full bg-[#183b32] px-3 py-1.5 text-[10px] font-semibold text-white sm:right-6 sm:text-xs">
                     Kit esercitazione
                   </span>
                 </div>
               </div>
-              <div className="rounded-2xl bg-white p-4 sm:p-5">
+              <div className="glass-float rounded-2xl p-4 sm:p-5">
                 <div className="flex items-center gap-3">
                   <div className="flex size-9 items-center justify-center rounded-xl bg-[#e6f2d5] text-[#547238]">
                     ✦
@@ -311,7 +318,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="metodo" className="bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <section id="metodo" className="bg-white/20 px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#68874a]">
@@ -329,7 +336,7 @@ export default function Home() {
             {steps.map((step) => (
               <article
                 key={step.number}
-                className="rounded-[1.75rem] border border-[#e9ede4] bg-[#fbfaf6] p-6 sm:p-8"
+                className="glass-panel rounded-[1.75rem] p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-8"
               >
                 <div className="flex items-start justify-between">
                   <span className="flex size-14 items-center justify-center rounded-2xl bg-[#e9f1dd] text-[#53743a]">
@@ -373,8 +380,8 @@ export default function Home() {
                 key={course.name}
                 className={`rounded-[1.75rem] p-6 sm:p-9 ${
                   index === 0
-                    ? "bg-[#183b32] text-white"
-                    : "border border-[#e5e9df] bg-white"
+                    ? "glass-dark-panel text-white"
+                    : "glass-panel"
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -443,7 +450,7 @@ export default function Home() {
       </section>
 
       <section className="px-5 pb-20 sm:px-8 sm:pb-28 lg:px-12">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 rounded-[2rem] bg-[#eaf0e1] p-7 sm:p-10 md:flex-row md:items-center md:justify-between lg:p-14">
+        <div className="glass-panel mx-auto flex max-w-7xl flex-col gap-8 rounded-[2rem] p-7 sm:p-10 md:flex-row md:items-center md:justify-between lg:p-14">
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#68874a]">
               Helico per le aziende
@@ -467,7 +474,7 @@ export default function Home() {
 
       <section
         id="lista-attesa"
-        className="scroll-mt-8 bg-[#183b32] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12"
+        className="liquid-cta-section scroll-mt-8 px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12"
       >
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_0.8fr] md:items-center">
           <div>
@@ -482,7 +489,7 @@ export default function Home() {
               disponibile a breve.
             </p>
           </div>
-          <div className="rounded-[1.5rem] border border-white/15 bg-white/[0.06] p-5 sm:p-7">
+          <div className="glass-on-dark rounded-[1.5rem] p-5 sm:p-7">
             <p className="text-sm font-semibold">Lista d&apos;attesa</p>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <label className="sr-only" htmlFor="email-lista-attesa">
@@ -493,7 +500,7 @@ export default function Home() {
                 type="email"
                 disabled
                 placeholder="Il modulo sarà disponibile a breve"
-                className="min-h-12 min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-5 text-sm text-white placeholder:text-white/50 disabled:cursor-not-allowed"
+                className="glass-input min-h-12 min-w-0 flex-1 rounded-full px-5 text-sm text-white placeholder:text-white/70 disabled:cursor-not-allowed"
               />
               <button
                 type="button"
