@@ -14,8 +14,9 @@ decorazione per le card.
 | `--color-ink` | `#131313` | Testo principale |
 | `--color-secondary` | `#45464A` | Testo secondario |
 | `--color-accent` | `#2447C8` | Unico accento: azioni, focus e mesh |
+| `--nav-glass-underlay` | `#FFFFFF` | Base opaca responsive sotto il vetro della nav |
 | `--glass-neutral` | `rgba(255, 255, 255, 0.90)` | Navigazione, coach e barra mobile |
-| `--glass-nav-tint` | `rgba(255, 255, 255, 0.76)` | Mantiene leggibile il testo della nav sopra la mesh scura |
+| `--glass-nav-tint` | `rgba(255, 255, 255, 0.76)` | Schiarisce il vetro sopra la base opaca bianca |
 | `--glass-tint` | `rgba(228, 235, 255, 0.92)` | Solo CTA principale |
 
 Il gradiente mesh usa il blu d'accento a diverse opacità con bianco e nero:
@@ -70,16 +71,17 @@ Usare solo i pesi `400` e `600`.
   flottante del coach AI e barra a schede mobile. Non mettere il CTA dentro una
   superficie nav già vetrata: tenerlo separato evita vetro su vetro.
 - **Tintura:** la CTA usa il vetro azzurro chiaro; la nav ha un leggero filtro
-  bianco neutro per mantenere il contrasto sopra la mesh scura; gli altri
-  controlli usano il vetro neutro.
+  bianco neutro sopra una base opaca bianca; gli altri controlli usano il vetro
+  neutro.
 - **Spazio:** layout mobile-first, titoli ampi, margini generosi e contenuto
   leggibile sopra immagini vivide. Le card dei corsi non diventano vetro.
 - **Rimozioni:** niente pill-eyebrow, griglie illustrative, icone sparkle/check
   decorative o microcopy riempitivo.
 - **Interazione:** al `:active` i pulsanti scalano a `0.97`; gli anchor scorrono
-  con morbidezza; il vetro reagisce al tocco e al puntatore con una lieve
-  distorsione fluida. Le card dei corsi si sollevano appena in hover, senza
-  diventare vetro. Nessuna animazione autonoma.
+  con morbidezza; il vetro reagisce al tocco e al puntatore con distorsione
+  fluida, riflessi e inclinazione lieve sui controlli più piccoli. La nav resta
+  su una base bianca opaca che si ridimensiona con la barra. Le card dei corsi
+  si sollevano appena in hover, senza diventare vetro.
 - **Accessibilità:** bersagli interattivi di almeno `44px`; focus visibile con
   l'accento; testo su ogni superficie vetrata con contrasto minimo `4.5:1`.
   Con `prefers-reduced-transparency: reduce` si disattiva WebGL/blur e si usa

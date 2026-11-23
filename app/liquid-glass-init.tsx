@@ -43,7 +43,11 @@ export default function LiquidGlassInit({
         throw new Error("Token --glass-nav-tint non trovato");
       }
 
-      const createLenses = (activeTarget: string, tint?: string) => {
+      const createLenses = (
+        activeTarget: string,
+        tint?: string,
+        tilt = false,
+      ) => {
         const initialized = liquidGL({
           engine: "webgl",
           target: activeTarget,
@@ -55,14 +59,16 @@ export default function LiquidGlassInit({
           bevelWidth: 0.12,
           frost: 0,
           shadow: true,
-          specular: false,
+          specular: !reducedMotion.matches,
           reveal: "none",
-          tilt: false,
+          tilt: tilt && !reducedMotion.matches,
+          tiltFactor: 3,
+          tiltEase: 420,
           draggable: false,
           interaction: reducedMotion.matches ? "none" : "fluid",
-          interactionStrength: 0.2,
-          interactionRadius: 0.4,
-          interactionViscosity: 0.82,
+          interactionStrength: 0.55,
+          interactionRadius: 0.5,
+          interactionViscosity: 0.6,
           tint,
         });
 
@@ -77,7 +83,7 @@ export default function LiquidGlassInit({
         ...(navTarget
           ? createLenses(navTarget, navTint)
           : []),
-        ...createLenses(activeTarget),
+        ...createLenses(activeTarget, undefined, true),
       ];
     };
 

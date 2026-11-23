@@ -45,6 +45,7 @@ export default function Home() {
         snapshot=".home-page"
       />
 
+      <div className="home-nav-backing" aria-hidden="true" />
       <header className="home-nav home-glass" id="inizio">
         <SmoothAnchor
           href="#inizio"

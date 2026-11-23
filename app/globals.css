@@ -5,6 +5,7 @@
   --color-ink: #131313;
   --color-secondary: #45464a;
   --color-accent: #2447c8;
+  --nav-glass-underlay: #fff;
   --glass-neutral: rgba(255, 255, 255, 0.9);
   --glass-nav-tint: rgba(255, 255, 255, 0.76);
   --glass-tint: rgba(228, 235, 255, 0.92);
@@ -79,6 +80,21 @@ strong {
   border: 1px solid var(--glass-edge);
   border-radius: 999px;
   transform: translateX(-50%);
+}
+
+.home-nav-backing {
+  position: fixed;
+  z-index: 28;
+  top: 16px;
+  left: 50%;
+  width: min(1200px, calc(100% - 40px));
+  min-height: 64px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  background: var(--nav-glass-underlay);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
 }
 
 .home-glass {
@@ -620,6 +636,12 @@ strong {
     width: calc(100% - 24px);
     min-height: 58px;
     padding: 8px 18px;
+  }
+
+  .home-nav-backing {
+    top: 12px;
+    width: calc(100% - 24px);
+    min-height: 58px;
   }
 
   .home-nav-links {

@@ -17,6 +17,8 @@ declare module "liquid-gl" {
     specular?: boolean;
     reveal?: "fade" | "none";
     tilt?: boolean;
+    tiltFactor?: number;
+    tiltEase?: number;
     draggable?: boolean;
     interaction?: "none" | "fluid";
     interactionStrength?: number;
