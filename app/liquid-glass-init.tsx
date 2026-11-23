@@ -5,6 +5,7 @@ import liquidGL from "liquid-gl";
 
 type LiquidGlassInitProps = {
   navTarget?: string;
+  navSnapshot?: string;
   target: string;
   mobileTarget?: string;
   snapshot: string;
@@ -12,6 +13,7 @@ type LiquidGlassInitProps = {
 
 export default function LiquidGlassInit({
   navTarget,
+  navSnapshot,
   target,
   mobileTarget,
   snapshot,
@@ -35,25 +37,17 @@ export default function LiquidGlassInit({
 
       const activeTarget =
         mobileTarget && mobileLayout.matches ? mobileTarget : target;
-      const navTint = getComputedStyle(document.documentElement)
-        .getPropertyValue("--glass-nav-tint")
-        .trim();
-
-      if (navTarget && !navTint) {
-        throw new Error("Token --glass-nav-tint non trovato");
-      }
-
       const createLenses = (
         activeTarget: string,
-        tint?: string,
         tilt = false,
+        sourceSnapshot = snapshot,
       ) => {
         const initialized = liquidGL({
           engine: "webgl",
           target: activeTarget,
-          snapshot,
+          snapshot: sourceSnapshot,
           resolution: 1.5,
-          refraction: 0.008,
+          refraction: 0.018,
           aberration: 0,
           bevelDepth: 0.04,
           bevelWidth: 0.12,
@@ -66,10 +60,9 @@ export default function LiquidGlassInit({
           tiltEase: 420,
           draggable: false,
           interaction: reducedMotion.matches ? "none" : "fluid",
-          interactionStrength: 0.55,
-          interactionRadius: 0.5,
-          interactionViscosity: 0.6,
-          tint,
+          interactionStrength: 1,
+          interactionRadius: 0.55,
+          interactionViscosity: 0.45,
         });
 
         if (!initialized) {
@@ -81,9 +74,9 @@ export default function LiquidGlassInit({
 
       lenses = [
         ...(navTarget
-          ? createLenses(navTarget, navTint)
+          ? createLenses(navTarget, false, navSnapshot ?? snapshot)
           : []),
-        ...createLenses(activeTarget, undefined, true),
+        ...createLenses(activeTarget, true),
       ];
     };
 
@@ -98,7 +91,7 @@ export default function LiquidGlassInit({
       mobileLayout.removeEventListener("change", updateMaterial);
       destroyLenses();
     };
-  }, [mobileTarget, navTarget, snapshot, target]);
+  }, [mobileTarget, navSnapshot, navTarget, snapshot, target]);
 
   return null;
 }

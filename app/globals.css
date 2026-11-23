@@ -5,9 +5,7 @@
   --color-ink: #131313;
   --color-secondary: #45464a;
   --color-accent: #2447c8;
-  --nav-glass-underlay: #fff;
   --glass-neutral: rgba(255, 255, 255, 0.9);
-  --glass-nav-tint: rgba(255, 255, 255, 0.76);
   --glass-tint: rgba(228, 235, 255, 0.92);
   --glass-edge: rgba(255, 255, 255, 0.78);
   --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -83,17 +81,18 @@ strong {
 }
 
 .home-nav-backing {
-  position: fixed;
-  z-index: 28;
-  top: 16px;
-  left: 50%;
-  width: min(1200px, calc(100% - 40px));
-  min-height: 64px;
-  transform: translateX(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 999px;
-  background: var(--nav-glass-underlay);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    #fff 0%,
+    #fff 34%,
+    #ededed 55%,
+    #fff 76%,
+    #fff 100%
+  );
   pointer-events: none;
 }
 
@@ -110,6 +109,12 @@ strong {
     border-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
     background-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.home-nav.home-glass {
+  background-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 
 .home-nav.home-glass,
@@ -636,12 +641,6 @@ strong {
     width: calc(100% - 24px);
     min-height: 58px;
     padding: 8px 18px;
-  }
-
-  .home-nav-backing {
-    top: 12px;
-    width: calc(100% - 24px);
-    min-height: 58px;
   }
 
   .home-nav-links {

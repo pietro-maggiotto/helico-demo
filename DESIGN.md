@@ -14,9 +14,7 @@ decorazione per le card.
 | `--color-ink` | `#131313` | Testo principale |
 | `--color-secondary` | `#45464A` | Testo secondario |
 | `--color-accent` | `#2447C8` | Unico accento: azioni, focus e mesh |
-| `--nav-glass-underlay` | `#FFFFFF` | Base opaca responsive sotto il vetro della nav |
-| `--glass-neutral` | `rgba(255, 255, 255, 0.90)` | Navigazione, coach e barra mobile |
-| `--glass-nav-tint` | `rgba(255, 255, 255, 0.76)` | Schiarisce il vetro sopra la base opaca bianca |
+| `--glass-neutral` | `rgba(255, 255, 255, 0.90)` | Coach e barra mobile |
 | `--glass-tint` | `rgba(228, 235, 255, 0.92)` | Solo CTA principale |
 
 Il gradiente mesh usa il blu d'accento a diverse opacità con bianco e nero:
@@ -29,9 +27,10 @@ che ne alterino il contenuto.
 Il testo sui controlli in vetro usa `--color-ink`. Anche assumendo un'immagine
 nera dietro la superficie, `--glass-neutral` composita a circa `#E6E6E6` e
 `--glass-tint` a circa `#D2D8EB`: il testo mantiene rispettivamente circa
-`14.9:1` e `13.1:1`. L'accento sul vetro neutro supera `4.5:1`; sul vetro
-tinto supera `5.2:1`. Per i fallback senza trasparenza usare gli stessi fondi
-chiari, non superfici scure.
+`14.9:1` e `13.1:1`. La nav usa una sorgente opaca da `#FFFFFF` a `#EDEDED`,
+con contrasto superiore a `15:1`. L'accento sul vetro neutro supera `4.5:1`;
+sul vetro tinto supera `5.2:1`. Per i fallback senza trasparenza usare gli
+stessi fondi chiari, non superfici scure.
 
 ## Materiale, raggi e ombre
 
@@ -70,8 +69,8 @@ Usare solo i pesi `400` e `600`.
 - **Vetro solo sui controlli:** barra di navigazione, CTA principale, bolla
   flottante del coach AI e barra a schede mobile. Non mettere il CTA dentro una
   superficie nav già vetrata: tenerlo separato evita vetro su vetro.
-- **Tintura:** la CTA usa il vetro azzurro chiaro; la nav ha un leggero filtro
-  bianco neutro sopra una base opaca bianca; gli altri controlli usano il vetro
+- **Tintura:** la CTA usa il vetro azzurro chiaro; la nav usa una sorgente
+  bianca opaca agganciata alla barra fissa; gli altri controlli usano il vetro
   neutro.
 - **Spazio:** layout mobile-first, titoli ampi, margini generosi e contenuto
   leggibile sopra immagini vivide. Le card dei corsi non diventano vetro.
@@ -79,9 +78,9 @@ Usare solo i pesi `400` e `600`.
   decorative o microcopy riempitivo.
 - **Interazione:** al `:active` i pulsanti scalano a `0.97`; gli anchor scorrono
   con morbidezza; il vetro reagisce al tocco e al puntatore con distorsione
-  fluida, riflessi e inclinazione lieve sui controlli più piccoli. La nav resta
-  su una base bianca opaca che si ridimensiona con la barra. Le card dei corsi
-  si sollevano appena in hover, senza diventare vetro.
+  fluida, riflessi e inclinazione lieve sui controlli più piccoli. La nav è un
+  unico blocco fisso con superficie bianca opaca. Le card dei corsi si sollevano
+  appena in hover, senza diventare vetro.
 - **Accessibilità:** bersagli interattivi di almeno `44px`; focus visibile con
   l'accento; testo su ogni superficie vetrata con contrasto minimo `4.5:1`.
   Con `prefers-reduced-transparency: reduce` si disattiva WebGL/blur e si usa

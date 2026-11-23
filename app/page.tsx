@@ -40,13 +40,14 @@ export default function Home() {
     <main className="site-shell home-page">
       <LiquidGlassInit
         navTarget=".home-nav.home-glass"
+        navSnapshot=".home-nav-backing"
         target=".home-glass:not(.home-nav):not(.mobile-tabs)"
         mobileTarget=".home-glass:not(.home-nav)"
         snapshot=".home-page"
       />
 
-      <div className="home-nav-backing" aria-hidden="true" />
       <header className="home-nav home-glass" id="inizio">
+        <div className="home-nav-backing" aria-hidden="true" />
         <SmoothAnchor
           href="#inizio"
           className="home-brand"
