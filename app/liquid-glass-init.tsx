@@ -4,12 +4,14 @@ import { useEffect } from "react";
 import liquidGL from "liquid-gl";
 
 type LiquidGlassInitProps = {
+  navTarget?: string;
   target: string;
   mobileTarget?: string;
   snapshot: string;
 };
 
 export default function LiquidGlassInit({
+  navTarget,
   target,
   mobileTarget,
   snapshot,
@@ -18,14 +20,13 @@ export default function LiquidGlassInit({
     const reducedTransparency = window.matchMedia(
       "(prefers-reduced-transparency: reduce)",
     );
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileLayout = window.matchMedia("(max-width: 760px)");
-    let lenses: ReturnType<typeof liquidGL> = undefined;
+    let lenses: Array<{ destroy(): void }> = [];
 
     const destroyLenses = () => {
-      if (!lenses) return;
-      const instances = Array.isArray(lenses) ? lenses : [lenses];
-      instances.forEach((lens) => lens.destroy());
-      lenses = undefined;
+      lenses.forEach((lens) => lens.destroy());
+      lenses = [];
     };
 
     const updateMaterial = () => {
@@ -34,43 +35,64 @@ export default function LiquidGlassInit({
 
       const activeTarget =
         mobileTarget && mobileLayout.matches ? mobileTarget : target;
-      const initialized = liquidGL({
-        engine: "webgl",
-        target: activeTarget,
-        snapshot,
-        resolution: 1.5,
-        refraction: 0.008,
-        aberration: 0,
-        bevelDepth: 0.04,
-        bevelWidth: 0.12,
-        frost: 0,
-        shadow: true,
-        specular: false,
-        reveal: "none",
-        tilt: false,
-        draggable: false,
-        interaction: "none",
-      });
+      const navTint = getComputedStyle(document.documentElement)
+        .getPropertyValue("--glass-nav-tint")
+        .trim();
 
-      if (!initialized) {
-        throw new Error(
-          `LiquidGL non ha trovato le superfici: ${activeTarget}`,
-        );
+      if (navTarget && !navTint) {
+        throw new Error("Token --glass-nav-tint non trovato");
       }
 
-      lenses = initialized;
+      const createLenses = (activeTarget: string, tint?: string) => {
+        const initialized = liquidGL({
+          engine: "webgl",
+          target: activeTarget,
+          snapshot,
+          resolution: 1.5,
+          refraction: 0.008,
+          aberration: 0,
+          bevelDepth: 0.04,
+          bevelWidth: 0.12,
+          frost: 0,
+          shadow: true,
+          specular: false,
+          reveal: "none",
+          tilt: false,
+          draggable: false,
+          interaction: reducedMotion.matches ? "none" : "fluid",
+          interactionStrength: 0.2,
+          interactionRadius: 0.4,
+          interactionViscosity: 0.82,
+          tint,
+        });
+
+        if (!initialized) {
+          throw new Error(`LiquidGL non ha trovato le superfici: ${activeTarget}`);
+        }
+
+        return Array.isArray(initialized) ? initialized : [initialized];
+      };
+
+      lenses = [
+        ...(navTarget
+          ? createLenses(navTarget, navTint)
+          : []),
+        ...createLenses(activeTarget),
+      ];
     };
 
     updateMaterial();
     reducedTransparency.addEventListener("change", updateMaterial);
+    reducedMotion.addEventListener("change", updateMaterial);
     mobileLayout.addEventListener("change", updateMaterial);
 
     return () => {
       reducedTransparency.removeEventListener("change", updateMaterial);
+      reducedMotion.removeEventListener("change", updateMaterial);
       mobileLayout.removeEventListener("change", updateMaterial);
       destroyLenses();
     };
-  }, [mobileTarget, snapshot, target]);
+  }, [mobileTarget, navTarget, snapshot, target]);
 
   return null;
 }

@@ -15,6 +15,7 @@ decorazione per le card.
 | `--color-secondary` | `#45464A` | Testo secondario |
 | `--color-accent` | `#2447C8` | Unico accento: azioni, focus e mesh |
 | `--glass-neutral` | `rgba(255, 255, 255, 0.90)` | Navigazione, coach e barra mobile |
+| `--glass-nav-tint` | `rgba(255, 255, 255, 0.76)` | Mantiene leggibile il testo della nav sopra la mesh scura |
 | `--glass-tint` | `rgba(228, 235, 255, 0.92)` | Solo CTA principale |
 
 Il gradiente mesh usa il blu d'accento a diverse opacità con bianco e nero:
@@ -68,19 +69,21 @@ Usare solo i pesi `400` e `600`.
 - **Vetro solo sui controlli:** barra di navigazione, CTA principale, bolla
   flottante del coach AI e barra a schede mobile. Non mettere il CTA dentro una
   superficie nav già vetrata: tenerlo separato evita vetro su vetro.
-- **Tintura:** soltanto la CTA principale usa il vetro azzurro chiaro; gli altri
+- **Tintura:** la CTA usa il vetro azzurro chiaro; la nav ha un leggero filtro
+  bianco neutro per mantenere il contrasto sopra la mesh scura; gli altri
   controlli usano il vetro neutro.
 - **Spazio:** layout mobile-first, titoli ampi, margini generosi e contenuto
   leggibile sopra immagini vivide. Le card dei corsi non diventano vetro.
 - **Rimozioni:** niente pill-eyebrow, griglie illustrative, icone sparkle/check
   decorative o microcopy riempitivo.
-- **Interazione:** al `:active` i pulsanti scalano a `0.97`; in hover il vetro
-  modifica solo bordo, riflesso e ombra. Nessuna animazione autonoma o
-  traslazione.
+- **Interazione:** al `:active` i pulsanti scalano a `0.97`; gli anchor scorrono
+  con morbidezza; il vetro reagisce al tocco e al puntatore con una lieve
+  distorsione fluida. Le card dei corsi si sollevano appena in hover, senza
+  diventare vetro. Nessuna animazione autonoma.
 - **Accessibilità:** bersagli interattivi di almeno `44px`; focus visibile con
   l'accento; testo su ogni superficie vetrata con contrasto minimo `4.5:1`.
   Con `prefers-reduced-transparency: reduce` si disattiva WebGL/blur e si usa
   il fondo opaco chiaro. Con `prefers-reduced-motion: reduce` si rimuovono
-  transizioni ed effetti di movimento.
+  transizioni, scorrimento morbido ed effetti di movimento.
 - **Barra mobile:** flottante sopra la safe area inferiore, con fondo neutro
   vetrato e senza sovrapporsi al CTA o ai contenuti.

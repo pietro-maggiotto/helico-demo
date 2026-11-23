@@ -1,4 +1,5 @@
 import LiquidGlassInit from "./liquid-glass-init";
+import SmoothAnchor from "./smooth-anchor";
 
 const steps = [
   {
@@ -38,18 +39,23 @@ export default function Home() {
   return (
     <main className="site-shell home-page">
       <LiquidGlassInit
-        target=".home-glass:not(.mobile-tabs)"
-        mobileTarget=".home-glass"
+        navTarget=".home-nav.home-glass"
+        target=".home-glass:not(.home-nav):not(.mobile-tabs)"
+        mobileTarget=".home-glass:not(.home-nav)"
         snapshot=".home-page"
       />
 
       <header className="home-nav home-glass" id="inizio">
-        <a href="#inizio" className="home-brand" aria-label="Helico, inizio">
+        <SmoothAnchor
+          href="#inizio"
+          className="home-brand"
+          aria-label="Helico, inizio"
+        >
           helico
-        </a>
+        </SmoothAnchor>
         <nav className="home-nav-links" aria-label="Navigazione principale">
-          <a href="#metodo">Metodo</a>
-          <a href="#corsi">Percorsi</a>
+          <SmoothAnchor href="#metodo">Metodo</SmoothAnchor>
+          <SmoothAnchor href="#corsi">Percorsi</SmoothAnchor>
           <a href="/aziende">Aziende</a>
         </nav>
       </header>
@@ -65,12 +71,15 @@ export default function Home() {
             AI sulle foto dei tuoi esercizi.
           </p>
           <div className="hero-actions">
-            <a className="home-glass home-glass--tinted primary-cta" href="#lista-attesa">
+            <SmoothAnchor
+              className="home-glass home-glass--tinted primary-cta"
+              href="#lista-attesa"
+            >
               Entra in lista d&apos;attesa
-            </a>
-            <a className="text-link" href="#metodo">
+            </SmoothAnchor>
+            <SmoothAnchor className="text-link" href="#metodo">
               Scopri il metodo
-            </a>
+            </SmoothAnchor>
           </div>
           <div className="hero-facts" aria-label="Dettagli del percorso">
             <div>
@@ -132,9 +141,9 @@ export default function Home() {
                 <p className="course-description">{course.description}</p>
                 <div className="course-footer">
                   <strong className="course-price">€699</strong>
-                  <a className="course-link" href="#lista-attesa">
+                  <SmoothAnchor className="course-link" href="#lista-attesa">
                     Scopri il corso <span aria-hidden="true">→</span>
-                  </a>
+                  </SmoothAnchor>
                 </div>
               </article>
             ))}
@@ -181,16 +190,20 @@ export default function Home() {
       </section>
 
       <footer className="home-footer">
-        <a href="#inizio" className="home-brand" aria-label="Torna all'inizio">
+        <SmoothAnchor
+          href="#inizio"
+          className="home-brand"
+          aria-label="Torna all'inizio"
+        >
           helico
-        </a>
+        </SmoothAnchor>
         <p>Impara un mestiere. Costruisci il tuo futuro.</p>
         <a href="/aziende">Per le aziende</a>
       </footer>
 
       <nav className="mobile-tabs home-glass" aria-label="Navigazione mobile">
-        <a href="#metodo">Metodo</a>
-        <a href="#corsi">Corsi</a>
+        <SmoothAnchor href="#metodo">Metodo</SmoothAnchor>
+        <SmoothAnchor href="#corsi">Corsi</SmoothAnchor>
         <a href="/aziende">Aziende</a>
       </nav>
     </main>

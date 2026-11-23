@@ -56,6 +56,11 @@
     background-color 180ms ease;
 }
 
+.glass-test__navigation,
+.glass-test__primary-cta {
+  pointer-events: auto !important;
+}
+
 .glass-test__glass:hover {
   border-color: #fff;
   box-shadow:

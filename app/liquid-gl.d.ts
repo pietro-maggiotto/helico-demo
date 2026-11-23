@@ -19,6 +19,10 @@ declare module "liquid-gl" {
     tilt?: boolean;
     draggable?: boolean;
     interaction?: "none" | "fluid";
+    interactionStrength?: number;
+    interactionRadius?: number;
+    interactionViscosity?: number;
+    tint?: string | null;
   }
 
   function liquidGL(

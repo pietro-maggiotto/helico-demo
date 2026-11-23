@@ -6,6 +6,7 @@
   --color-secondary: #45464a;
   --color-accent: #2447c8;
   --glass-neutral: rgba(255, 255, 255, 0.9);
+  --glass-nav-tint: rgba(255, 255, 255, 0.76);
   --glass-tint: rgba(228, 235, 255, 0.92);
   --glass-edge: rgba(255, 255, 255, 0.78);
   --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -24,7 +25,7 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   scroll-padding-top: 6rem;
 }
 
@@ -57,7 +58,6 @@ strong {
 
 .home-page {
   position: relative;
-  overflow: clip;
   background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-system);
@@ -91,9 +91,15 @@ strong {
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background-color 180ms ease;
+    border-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.home-nav.home-glass,
+.mobile-tabs.home-glass,
+.primary-cta.home-glass {
+  pointer-events: auto !important;
 }
 
 .home-glass:hover {
@@ -134,6 +140,7 @@ strong {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  transition: color 180ms ease;
 }
 
 .home-nav-links a:hover,
@@ -391,6 +398,10 @@ strong {
   border-radius: 24px;
   background: #fff;
   color: var(--color-ink);
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .course-duration {
@@ -438,6 +449,17 @@ strong {
   font-weight: 600;
   text-align: right;
 }
+
+.course-link span {
+  display: inline-block;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.course-card:hover {
+  border-color: rgba(19, 19, 19, 0.2);
+}
+
+
 
 .business-section {
   background: #fff;
@@ -553,6 +575,17 @@ strong {
 .home-page :focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 4px;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(19, 19, 19, 0.1);
+  }
+
+  .course-card:hover .course-link span {
+    transform: translateX(4px);
+  }
 }
 
 @supports not (
