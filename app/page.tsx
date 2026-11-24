@@ -40,9 +40,9 @@ export default function Home() {
     <main className="site-shell home-page">
       <LiquidGlassInit
         navTarget=".home-nav.home-glass"
-        navSnapshot=".home-nav-backing"
+        mobileNavTarget=".mobile-tabs.home-glass"
         target=".home-glass:not(.home-nav):not(.mobile-tabs)"
-        mobileTarget=".home-glass:not(.home-nav)"
+        mobileTarget=".home-glass:not(.home-nav):not(.mobile-tabs)"
         snapshot=".home-page"
       />
 
@@ -204,6 +204,7 @@ export default function Home() {
       </footer>
 
       <nav className="mobile-tabs home-glass" aria-label="Navigazione mobile">
+        <div className="mobile-tabs-backing" aria-hidden="true" />
         <SmoothAnchor href="#metodo">Metodo</SmoothAnchor>
         <SmoothAnchor href="#corsi">Corsi</SmoothAnchor>
         <a href="/aziende">Aziende</a>

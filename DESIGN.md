@@ -77,10 +77,12 @@ Usare solo i pesi `400` e `600`.
 - **Rimozioni:** niente pill-eyebrow, griglie illustrative, icone sparkle/check
   decorative o microcopy riempitivo.
 - **Interazione:** al `:active` i pulsanti scalano a `0.97`; gli anchor scorrono
-  con morbidezza; il vetro reagisce al tocco e al puntatore con distorsione
-  fluida, riflessi e inclinazione lieve sui controlli più piccoli. La nav è un
-  unico blocco fisso con superficie bianca opaca. Le card dei corsi si sollevano
-  appena in hover, senza diventare vetro.
+  con morbidezza; il vetro segue il tocco e il puntatore con distorsione ampia,
+  riflessi e inclinazione lieve sui controlli più piccoli. Le barre superiore e
+  inferiore usano superfici bianche isolate: il riflesso segue puntatore o
+  tocco, senza rifrangere il contenuto della pagina. La capsula superiore resta
+  fissa e opaca. Le card dei corsi si sollevano appena in hover, senza diventare
+  vetro.
 - **Accessibilità:** bersagli interattivi di almeno `44px`; focus visibile con
   l'accento; testo su ogni superficie vetrata con contrasto minimo `4.5:1`.
   Con `prefers-reduced-transparency: reduce` si disattiva WebGL/blur e si usa

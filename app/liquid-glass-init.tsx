@@ -5,7 +5,7 @@ import liquidGL from "liquid-gl";
 
 type LiquidGlassInitProps = {
   navTarget?: string;
-  navSnapshot?: string;
+  mobileNavTarget?: string;
   target: string;
   mobileTarget?: string;
   snapshot: string;
@@ -13,7 +13,7 @@ type LiquidGlassInitProps = {
 
 export default function LiquidGlassInit({
   navTarget,
-  navSnapshot,
+  mobileNavTarget,
   target,
   mobileTarget,
   snapshot,
@@ -24,7 +24,36 @@ export default function LiquidGlassInit({
     );
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileLayout = window.matchMedia("(max-width: 760px)");
+    const glowElements = [navTarget, mobileNavTarget]
+      .filter((selector): selector is string => Boolean(selector))
+      .map((selector) => document.querySelector<HTMLElement>(selector))
+      .filter((element): element is HTMLElement => Boolean(element));
     let lenses: Array<{ destroy(): void }> = [];
+    const glowListeners = new Map<
+      HTMLElement,
+      { move: (event: PointerEvent) => void; leave: () => void }
+    >();
+
+    const resetNavGlow = (element: HTMLElement) => {
+      element.style.setProperty("--nav-glow-x", "50%");
+      element.style.setProperty("--nav-glow-y", "50%");
+    };
+
+    const moveNavGlow = (element: HTMLElement, event: PointerEvent) => {
+      if (reducedMotion.matches) return;
+
+      const bounds = element.getBoundingClientRect();
+      const x = Math.min(
+        100,
+        Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100),
+      );
+      const y = Math.min(
+        100,
+        Math.max(0, ((event.clientY - bounds.top) / bounds.height) * 100),
+      );
+      element.style.setProperty("--nav-glow-x", `${x}%`);
+      element.style.setProperty("--nav-glow-y", `${y}%`);
+    };
 
     const destroyLenses = () => {
       lenses.forEach((lens) => lens.destroy());
@@ -33,21 +62,20 @@ export default function LiquidGlassInit({
 
     const updateMaterial = () => {
       destroyLenses();
+      if (reducedMotion.matches) {
+        glowElements.forEach(resetNavGlow);
+      }
       if (reducedTransparency.matches) return;
 
       const activeTarget =
         mobileTarget && mobileLayout.matches ? mobileTarget : target;
-      const createLenses = (
-        activeTarget: string,
-        tilt = false,
-        sourceSnapshot = snapshot,
-      ) => {
+      const createLenses = (activeTarget: string, tilt = false) => {
         const initialized = liquidGL({
           engine: "webgl",
           target: activeTarget,
-          snapshot: sourceSnapshot,
+          snapshot,
           resolution: 1.5,
-          refraction: 0.018,
+          refraction: 0.03,
           aberration: 0,
           bevelDepth: 0.04,
           bevelWidth: 0.12,
@@ -61,8 +89,8 @@ export default function LiquidGlassInit({
           draggable: false,
           interaction: reducedMotion.matches ? "none" : "fluid",
           interactionStrength: 1,
-          interactionRadius: 0.55,
-          interactionViscosity: 0.45,
+          interactionRadius: 0.7,
+          interactionViscosity: 0.3,
         });
 
         if (!initialized) {
@@ -72,26 +100,38 @@ export default function LiquidGlassInit({
         return Array.isArray(initialized) ? initialized : [initialized];
       };
 
-      lenses = [
-        ...(navTarget
-          ? createLenses(navTarget, false, navSnapshot ?? snapshot)
-          : []),
-        ...createLenses(activeTarget, true),
-      ];
+      lenses = createLenses(activeTarget, true);
     };
 
     updateMaterial();
+    glowElements.forEach((element) => {
+      const move = (event: PointerEvent) => moveNavGlow(element, event);
+      const leave = () => resetNavGlow(element);
+      glowListeners.set(element, { move, leave });
+      element.addEventListener("pointermove", move, { passive: true });
+      element.addEventListener("pointerleave", leave, { passive: true });
+    });
     reducedTransparency.addEventListener("change", updateMaterial);
     reducedMotion.addEventListener("change", updateMaterial);
     mobileLayout.addEventListener("change", updateMaterial);
 
     return () => {
+      glowListeners.forEach(({ move, leave }, element) => {
+        element.removeEventListener("pointermove", move);
+        element.removeEventListener("pointerleave", leave);
+      });
       reducedTransparency.removeEventListener("change", updateMaterial);
       reducedMotion.removeEventListener("change", updateMaterial);
       mobileLayout.removeEventListener("change", updateMaterial);
       destroyLenses();
     };
-  }, [mobileTarget, navSnapshot, navTarget, snapshot, target]);
+  }, [
+    mobileNavTarget,
+    mobileTarget,
+    navTarget,
+    snapshot,
+    target,
+  ]);
 
   return null;
 }

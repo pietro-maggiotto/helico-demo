@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@property --nav-glow-x {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --nav-glow-y {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
 :root {
   --color-canvas: #f5f5f2;
   --color-ink: #131313;
@@ -80,7 +92,8 @@ strong {
   transform: translateX(-50%);
 }
 
-.home-nav-backing {
+.home-nav-backing,
+.mobile-tabs-backing {
   position: absolute;
   z-index: -3;
   inset: 0;
@@ -111,10 +124,43 @@ strong {
     background-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.home-nav.home-glass {
+.home-nav.home-glass,
+.mobile-tabs.home-glass {
   background-color: transparent !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
+  transition:
+    border-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    --nav-glow-x 260ms cubic-bezier(0.18, 0.75, 0.25, 1),
+    --nav-glow-y 260ms cubic-bezier(0.18, 0.75, 0.25, 1);
+}
+
+.home-nav.home-glass::after,
+.mobile-tabs.home-glass::after {
+  position: absolute;
+  z-index: 0;
+  inset: 1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 190px 60px at var(--nav-glow-x) var(--nav-glow-y),
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.65) 38%,
+    rgba(225, 229, 239, 0.75) 68%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.home-nav > :not(.home-nav-backing) {
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-tabs > :not(.mobile-tabs-backing) {
+  position: relative;
+  z-index: 1;
 }
 
 .home-nav.home-glass,
