@@ -1,4 +1,3 @@
-import LiquidGlassInit from "./liquid-glass-init";
 import SmoothAnchor from "./smooth-anchor";
 
 const steps = [
@@ -38,16 +37,7 @@ const courses = [
 export default function Home() {
   return (
     <main className="site-shell home-page">
-      <LiquidGlassInit
-        navTarget=".home-nav.home-glass"
-        mobileNavTarget=".mobile-tabs.home-glass"
-        target=".home-glass:not(.home-nav):not(.mobile-tabs)"
-        mobileTarget=".home-glass:not(.home-nav):not(.mobile-tabs)"
-        snapshot=".home-page"
-      />
-
-      <header className="home-nav home-glass" id="inizio">
-        <div className="home-nav-backing" aria-hidden="true" />
+      <header className="home-nav" id="inizio">
         <SmoothAnchor
           href="#inizio"
           className="home-brand"
@@ -64,48 +54,41 @@ export default function Home() {
 
       <section className="home-hero" aria-labelledby="hero-title">
         <div className="hero-content">
-          <h1 id="hero-title">
-            Diventa elettricista o idraulico in{" "}
-            <span>6 mesi.</span>
+          <p className="hero-eyebrow">Helico</p>
+          <h1 className="hero-headline" id="hero-title">
+            <span className="hero-word hero-word--plain">Impara.</span>{" "}
+            <span className="hero-word hero-word--gradient">Ripara.</span>
           </h1>
           <p className="hero-subtitle">
-            Impara con lezioni pratiche, un kit a casa e il feedback di un coach
-            AI sulle foto dei tuoi esercizi.
+            Diventa elettricista o idraulico con lezioni pratiche e un coach AI
+            che corregge ogni tuo esercizio.
           </p>
           <div className="hero-actions">
             <SmoothAnchor
-              className="home-glass home-glass--tinted primary-cta"
+              className="primary-cta"
               href="#lista-attesa"
             >
               Entra in lista d&apos;attesa
             </SmoothAnchor>
-            <SmoothAnchor className="text-link" href="#metodo">
-              Scopri il metodo
+            <SmoothAnchor className="hero-secondary" href="#metodo">
+              Scopri il metodo ›
             </SmoothAnchor>
           </div>
           <div className="hero-facts" aria-label="Dettagli del percorso">
             <div>
-              <strong>5–6 mesi</strong>
-              <span>percorso pratico</span>
+              <strong>6 mesi</strong>
+              <span>dal primo giorno al lavoro</span>
             </div>
             <div>
               <strong>€699</strong>
-              <span>kit incluso</span>
+              <span>pagamento unico</span>
             </div>
             <div>
-              <strong>Coach AI</strong>
-              <span>feedback sui tuoi lavori</span>
+              <strong>AI</strong>
+              <span>feedback su ogni esercizio</span>
             </div>
           </div>
         </div>
-
-        <aside className="coach-bubble home-glass" aria-label="Feedback del coach AI">
-          <p className="coach-title">Coach AI</p>
-          <p>
-            Il collegamento è corretto. Verifica l&apos;assenza di tensione
-            prima di intervenire.
-          </p>
-        </aside>
       </section>
 
       <section className="method-section" id="metodo">
@@ -203,12 +186,6 @@ export default function Home() {
         <a href="/aziende">Per le aziende</a>
       </footer>
 
-      <nav className="mobile-tabs home-glass" aria-label="Navigazione mobile">
-        <div className="mobile-tabs-backing" aria-hidden="true" />
-        <SmoothAnchor href="#metodo">Metodo</SmoothAnchor>
-        <SmoothAnchor href="#corsi">Corsi</SmoothAnchor>
-        <a href="/aziende">Aziende</a>
-      </nav>
     </main>
   );
 }
