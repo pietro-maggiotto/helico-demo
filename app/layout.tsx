@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Helico — Impara un mestiere in 6 mesi",
   description:
-    "Diventa elettricista o idraulico con lezioni pratiche, un kit a casa e il feedback di un coach AI.",
+    "Diventa elettricista o idraulico con lezioni pratiche e il feedback di un coach AI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,25 +1,5 @@
 import SmoothAnchor from "./smooth-anchor";
-
-const steps = [
-  {
-    number: "01",
-    title: "Lezioni pratiche online",
-    description:
-      "Impara i fondamentali con spiegazioni chiare e dimostrazioni guidate.",
-  },
-  {
-    number: "02",
-    title: "Esercizi con il kit a casa",
-    description:
-      "Metti subito in pratica quello che studi, direttamente a casa tua.",
-  },
-  {
-    number: "03",
-    title: "Feedback AI dalla fotocamera",
-    description:
-      "Fotografa il tuo lavoro e ricevi indicazioni per migliorare, passo dopo passo.",
-  },
-] as const;
+import IPhoneShowcase from "./iphone-showcase";
 
 const courses = [
   {
@@ -92,24 +72,11 @@ export default function Home() {
       </section>
 
       <section className="method-section" id="metodo">
-        <div className="content-wrap">
-          <div className="section-heading">
-            <h2>Impari facendo. Poi lo fai davvero.</h2>
-            <p>
-              Un percorso costruito intorno alla pratica: studi, provi e
-              migliori con un coach al tuo fianco.
-            </p>
-          </div>
-          <ol className="step-list">
-            {steps.map((step) => (
-              <li className="step-item" key={step.number}>
-                <span className="step-number">{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </li>
-            ))}
-          </ol>
+        <div className="iphone-section-heading">
+          <h2>Il corso, in tasca.</h2>
+          <p>Quattro strumenti, un&apos;unica app.</p>
         </div>
+        <IPhoneShowcase />
       </section>
 
       <section className="course-section" id="corsi">
