@@ -799,14 +799,24 @@ strong {
   color: #ffffff;
 }
 
-.camera-photo-placeholder {
+.camera-photo {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  background: #3a3a3c;
-  color: #f5f5f7;
-  font-size: 13px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.camera-photo-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.08) 42%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  pointer-events: none;
 }
 
 .camera-top-pill {
@@ -826,6 +836,7 @@ strong {
 
 .camera-focus {
   position: absolute;
+  z-index: 2;
   top: 50%;
   left: 50%;
   display: flex;
@@ -890,6 +901,7 @@ strong {
 
 .camera-controls {
   position: absolute;
+  z-index: 2;
   right: 0;
   bottom: 78px;
   left: 0;
@@ -1008,17 +1020,12 @@ strong {
 }
 
 .coach-photo-thumb {
-  display: grid;
+  display: block;
   width: 39px;
   height: 39px;
   flex: none;
-  place-items: center;
   border-radius: 8px;
-  background: #3a3a3c;
-  color: #ffffff;
-  font-size: 6px;
-  line-height: 1.1;
-  text-align: center;
+  object-fit: cover;
 }
 
 .coach-input {

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   BarChart3,
@@ -167,9 +168,14 @@ function CameraScreen() {
       aria-label="Schermata Fotocamera: inquadratura del contatore pronta per l'esercizio"
     >
       <StatusBar />
-      <div className="camera-photo-placeholder">
-        <span>Foto contatore</span>
-      </div>
+      <Image
+        src="/images/contatore.jpg"
+        alt=""
+        fill
+        sizes="340px"
+        className="camera-photo"
+      />
+      <div className="camera-photo-shade" aria-hidden="true" />
       <div className="camera-top-pill">Esercizio 12 · Lettura contatore</div>
       <div className="camera-focus">
         <span className="camera-detected">Contatore rilevato</span>
@@ -208,9 +214,13 @@ function CoachScreen() {
         </header>
         <div className="coach-messages">
           <div className="coach-message coach-message--user coach-message--with-photo">
-            <div className="coach-photo-thumb" role="img" aria-label="Foto contatore">
-              Foto contatore
-            </div>
+            <Image
+              src="/images/contatore.jpg"
+              alt=""
+              width={39}
+              height={39}
+              className="coach-photo-thumb"
+            />
             <span>Ho fatto la lettura, è giusta?</span>
           </div>
           <div className="coach-message coach-message--coach">
